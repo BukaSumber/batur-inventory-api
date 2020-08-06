@@ -1,6 +1,7 @@
 from inventory.models import *
 from inventory.serializers.productserializers import *
 from inventory.serializers.warehouseserializers import *
+from inventory.serializers.stockserializers import *
 from rest_framework import permissions
 from rest_framework import viewsets, renderers
 from rest_framework.decorators import action, api_view
@@ -17,8 +18,12 @@ def api_root(request, format=None):
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductStockSerializer
 
 class WarehouseViewSet(viewsets.ModelViewSet):
     queryset = Warehouse.objects.all()
-    serializer_class = WarehouseSerializer
+    serializer_class = WarehouseStockSerializer
+
+class StockViewSet(viewsets.ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer

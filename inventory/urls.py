@@ -25,10 +25,23 @@ warehouse_detail = WarehouseViewSet.as_view({
     'delete': 'destroy'
 })
 
+stock_list = StockViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+stock_detail = StockViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 urlpatterns = format_suffix_patterns([
     path('', api_root),
     path('products/', product_list, name='product-list'),
     path('products/<int:pk>/', product_detail, name='product-detail'),
     path('warehouses/', warehouse_list, name='warehouse-list'),
-    path('warehouses/<int:pk>/', warehouse_detail, name='warehouse-detail')
+    path('warehouses/<int:pk>/', warehouse_detail, name='warehouse-detail'),
+    path('stocks/', stock_list, name='stock-list'),
+    path('stocks/<int:pk>/', stock_detail, name='stock-detail')
 ])
